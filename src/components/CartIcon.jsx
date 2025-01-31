@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Menu from '@mui/material/Menu';
 import Badge from '@mui/material/Badge';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,14 +12,31 @@ const CartIcon = () => {
     const getData = useSelector((state) => state.cartReducer.carts) //used to get data and put it in cart
 
 
+
     const dispatch = useDispatch()
 
-    const removeItem = (id) =>{
+    const removeItem = (id) => {
         dispatch(REMOVE(id))
     }
 
+    const [price, setPrice] = useState(0)
 
-    const total = ()=
+    const total = () => {
+        let price = 0;
+        getData.map((element) => {
+            price = element.price * element.qnty + price
+
+        })
+        setPrice(price)
+    }
+
+    useEffect(() => {
+
+        total();
+
+    }, [total])
+
+
 
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -70,25 +87,25 @@ const CartIcon = () => {
                                                     <tr>
                                                         <td>
                                                             <Link to={`/cart/${data.id}`} onClick={handleClose}>
-                                                            <img src={data.imgdata} style={{ width: '5rem', height: '5rem' }} alt="" /></Link>
+                                                                <img src={data.imgdata} style={{ width: '5rem', height: '5rem' }} alt="" /></Link>
                                                         </td>
                                                         <td>
                                                             <p>{data.rname}</p>
                                                             <p>Price: Rs {data.price}</p>
                                                             <p>Quantity: {data.qnty}</p>
-                                                            <p style={{color:'red', fontSize:20,cursor:'pointer'}}  onClick={()=>{removeItem(data.id)}}>
+                                                            <p style={{ color: 'red', fontSize: 20, cursor: 'pointer' }} onClick={() => { removeItem(data.id) }}>
                                                                 <i className='fas fa-trash smalltrash'></i>
                                                             </p>
                                                         </td>
-                                                        <td className='mt-5' style={{color:'red', fontSize:20,cursor:'pointer'}}  onClick={()=>{removeItem(data.id)}}>
-                                                        <i className='fas fa-trash largetrash'></i>
+                                                        <td className='mt-5' style={{ color: 'red', fontSize: 20, cursor: 'pointer' }} onClick={() => { removeItem(data.id) }}>
+                                                            <i className='fas fa-trash largetrash'></i>
                                                         </td>
                                                     </tr>
                                                 </>
                                             )
                                         })
                                     }
-                                    <p className='text-center'>Total: Rs 300</p>
+                                    <p className='text-center'>Total: Rs {price}</p>
                                 </tbody>
                             </table>
                         </div>

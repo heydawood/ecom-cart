@@ -15,3 +15,11 @@ export const REMOVE = (id) => {
   }
 }
 
+//remove single item
+
+export const REMOVE_ITEM = (item) => {
+  return {
+    type: 'REMOVE_ITEM',
+    payload: item
+  }
+}
