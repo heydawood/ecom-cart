@@ -19,6 +19,9 @@ const CartIcon = () => {
     }
 
 
+    const total = ()=
+
+
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
