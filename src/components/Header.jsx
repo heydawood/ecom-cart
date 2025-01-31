@@ -7,7 +7,7 @@ import './style.css'
 const Header = () => {
 
     const getData = useSelector((state)=>state.cartReducer.carts)
-    console.log(getData)
+    //console.log(getData)
 
     return (
         <nav className="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import CardsData from './CardsData'
 import './style.css'
 import { useDispatch } from 'react-redux'
-import ADD from '../redux/actions/action'
+import {ADD} from '../redux/actions/action'
 
 const Cards = () => {
 
